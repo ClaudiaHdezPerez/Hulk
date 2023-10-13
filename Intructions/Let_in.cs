@@ -42,7 +42,7 @@ namespace Hulk
 
             // En este punto se sustituye la condicional por el 'body' que se debe devolver 
             s = s.Remove(start + 1, stop - start - 1);
-            s = s.Insert(start + 1, $"({Function.Sustitution(body, vars, values, false)})");
+            s = s.Insert(start + 1, $"({Function.Sustitution(body, vars, values)})");
 
             // Luego se analiza la expresión general en caso de que no esté dentro de una 
             // definición de función           

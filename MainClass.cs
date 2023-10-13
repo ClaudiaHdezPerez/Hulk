@@ -7,13 +7,13 @@
             Aspect(); // Este método solo se encarga del aspecto de la consola
 
             while(true) {
-                Error.Reset(); // Se restauran los valores de cache por entradas
+                Error.Reset(); // Se restauran los valores de cache y errores por entradas
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.Write(">> ");
                 Console.ForegroundColor = ConsoleColor.Gray;
         
                 string expression = Console.ReadLine()!;
-                // string expression = " (-E)  ^ E;";
+                // string expression = "function f(x) => if(x > 1) f(x-1) else true;";
 
                 if (expression.ToUpper() == "EXIT") break; // Otra opción para cerrar la aplicación de consola
 
@@ -22,10 +22,14 @@
                     string resultado = Control.BasicSyntax(expression); 
                     Console.ForegroundColor = ConsoleColor.DarkGray;
 
+                    // Si la expresión final es un string entonces se 'traduce' para que C# 
+                    // lo imprima correctamente
                     if (String.IsString(resultado)) resultado = String.TraduceString(resultado);
 
                     if (resultado != "") {
                         if (resultado.StartsWith("\"")) {
+                            // Si no hubo ningún error y es un string entonces se le quitan las comillas del 
+                            // inicio y del final de la expresión
                             resultado = resultado[(resultado.IndexOf("\"") + 1)..resultado.LastIndexOf("\"")];
                         }
                         
@@ -36,6 +40,7 @@
         }
 
         public static void Aspect() {
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.Write("                       H U L K");
             Console.WriteLine();

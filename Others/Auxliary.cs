@@ -328,6 +328,18 @@ namespace Hulk
             return s;
         }
 
+        public static string ReplaceSymbol(string s) {
+            // Método para reemplazar los símbolos '+-', '++', '-+', '--'
+            while (s.Contains("+-") || s.Contains("-+") || s.Contains("++") || s.Contains("--")) {
+                s = s.Replace("+-","-");
+                s = s.Replace("-+","-");
+                s = s.Replace("++","+");
+                s = s.Replace("--","+");
+            }  
+
+            return s;
+        }
+
         public static string Parenthesis(string s) {
             // En este método se evalúa lo que está dentro de los paréntesis o las funciones 
 
@@ -396,31 +408,35 @@ namespace Hulk
                     return Control.Analize(s[..start] + Control.Analize(argument) + s[(index2 + 1)..]);
                 }
                 
-                // 
                 string mssg = double.TryParse(f[..f.IndexOf("(")], out _)? "is not a valid function name" : "is not a defined function";
                 if (!Error.Syntax($"'{f[..f.IndexOf("(")]}' {mssg}")) return "";
             }
-
+            // Esto es para resolver potencias con las bases dentro de paréntesis
             else if (s[(index2 + 1)..].Replace(" ", "").StartsWith("^")) {
-                char[] symbols = {'+', '-', '*', '/', '%', '&', '|', '!', '=', '>', '<', ')', '@', ','};
-                int stop = index2;
+                // Primero se revisa si tiene errores 
+                if (Error.BodyDetails(s)) {
+                    // Se reemplazan todos los símbolos '+-', '++', '-+', '--'
+                    s = ReplaceSymbol(s);
+                    char[] symbols = {'+', '-', '*', '/', '%', '&', '|', '!', '=', '>', '<', ')', '@', ','};
 
-                if (stop != s.Length && IsNumber(s[(index2 + 1)..][1].ToString())) {
-                   stop = s.IndexOfAny(symbols, index2 + 1);
-                   stop = stop == -1 ? s.Length : stop;
-                }
+                    // Se busca el próximo signo que no sea propio del exponente
+                    int stop = s.IndexOfAny(symbols, index2 + 3);
+                    stop = stop == -1 ? s.Length : stop;
 
-                if (stop > 1) {
-                    while(stop != s.Length && (s[stop] == '+' || s[stop] == '-') && s[stop - 1] == 'E' && char.IsDigit(s[stop - 2])) {
-                        stop = s.IndexOfAny(symbols, stop + 1);
-                        stop = stop == -1 ? s.Length : stop; 
-                    }
+                    if (stop > 1) {
+                        // Se revisa que el signo identificado como 'stop' no pertenezca a números de la 
+                        // forma '#E+#' o '#E-#'
+                        while(stop != s.Length && (s[stop] == '+' || s[stop] == '-') && s[stop - 1] == 'E' && char.IsDigit(s[stop - 2])) {
+                            stop = s.IndexOfAny(symbols, stop + 1);
+                            stop = stop == -1 ? s.Length : stop; 
+                        }
 
-                    if (stop != index2) {
+                        // Se separan los miembros a evaluar
                         string leftSide = s[(index + 1)..index2];
                         string rightSide = s[(index2 + 2)..stop];
 
                         string pow = Binary.Power(Control.Analize(leftSide), Control.Analize(rightSide));
+                        // y se insertan en la expresión
                         return Control.Analize(s[..index] + pow + s[stop..]);    
                     }
                 }
@@ -433,44 +449,6 @@ namespace Hulk
             // Si lo que se evalúa dentro del paréntesis es vacío se lanza un error 
             if (parenthesis == "" && !Error.Syntax($"Unexpected ')' after '('"))
             return "";
-
-            // // Para potencias que contengan paréntesis antes
-            // // Se verifica que tenga el símbolo '^' y que la evaluación de lo que estaba dentro del 
-            // // paréntesis sea un número
-            // if (s[(index2 + 1)..].Replace(" ", "").StartsWith("^") && IsNumber(parenthesis)) {
-            //     char[] symbols = {'+', '-', '/', '*', '%', '@', '&', '|', '!', '=', '<', '>', ')', ','};
-            //     // Se busca el primer número después del '^' 
-            //     int digit = n[(index2 + 1)..].IndexOf(n[(index2 + 1)..].FirstOrDefault(char.IsDigit));
-            //     int pow = n[(index2 + 1)..].IndexOf("^");
-
-            //     // Si no tiene números el exponente entonces será un error que se dará posteriormente
-            //     // durante la evaluación
-            //     if (digit == -1) return Control.Analize(s[..index] + parenthesis + s[(index2 + 1)..]);
-                
-            //     string m = Constants(n[(index2 + 2 + pow)..(index2 + 2 + digit)]);
-            //     digit = m.IndexOf(m.FirstOrDefault(char.IsDigit));
-            //     int stop = n[(index2 + 1)..].IndexOfAny(symbols, digit);
-                
-            //     while ((s[stop + index2 + 1] == '+' || s[stop + index2 + 1] == '-') && 
-            //             s[stop + index2] == 'E' && char.IsDigit(s[stop + index2 - 1])) {
-
-            //         stop = n[(index2 + 1)..].IndexOfAny(symbols, stop + 1);
-
-            //         if (stop == -1) {
-            //             stop = s[(index2 + 1)..].Length;
-            //             break;
-            //         }
-            //     }
-                
-            //     if (stop == -1) stop = s[(index2 + 1)..].Length;
-
-            //     string exp = Control.Analize(s[(index2 + 2 + pow)..(stop + index2 + 1)]);
-
-            //     if (IsNumber(exp)) {
-            //         parenthesis = Binary.Power(parenthesis, exp);
-            //         index2 = stop + index2; 
-            //     }
-            // }
                 
             return Control.Analize(s[..index] + parenthesis + s[(index2 + 1)..]);
         }

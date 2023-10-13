@@ -38,7 +38,7 @@ namespace Hulk
             s = s.Trim();
 
             // En caso de ser la declaración de una función, se intenta crear    
-            if (Function.IsInstruction(s)) return Function.Create(s);
+            if (Function.Declaration(s)) return Function.Create(s);
             
             // En caso de ser una declaración de una variable, se intenta resolver
             if (Let_in.IsLet_in(s)) return Let_in.Eval(s);

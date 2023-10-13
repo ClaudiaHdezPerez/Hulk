@@ -2,28 +2,41 @@ namespace Hulk
 {
     public class Function 
     {
+        // Diccionario para guardar los valores de las funciones ya calculadas hasta el momento
         public static Dictionary<string, string> cache = new(); 
+
+        // Diccionario para guardar las llamadas a las funciones de cada entrada, para controlar recursividad
         public static Dictionary<string, int> calls = new();
+        
+        // Valores de los argumentos por defecto
         public string arg1 = "";
         public string arg2 = Math.E.ToString();
+
+        // Diccionario con las funciones predefinidas por el lenguaje
         public Dictionary<string, string> predFunctions = new();
-        public static Dictionary<string, string> functions = new() {{"f(", ""}}; 
-        public static Dictionary<string, List<string>> variables = new() {{"f(", new() {"n"}}};  
+        // Diccionario con las funciones que se van creando como llave y como valor su 'cuerpo'
+        public static Dictionary<string, string> bodyFunction = new(); 
+        // Diccionario con las funciones que se van creando como llave y como valor sus variables
+        public static Dictionary<string, List<string>> variables = new();
+        // Diccionario que contiene el tipo que devuelve cada función creada
         public static Dictionary<string, string> output = new() {
             {"print(", "all"}, {"cos(", "number"}, {"sin(", "number"}, {"tan(", "number"}, {"sqrt(", "number"}, 
-            {"log(", "number"}, {"rand(", "number"}, {"exp(", "number"}, {"f(", "number"}
+            {"log(", "number"}, {"rand(", "number"}, {"exp(", "number"}
         };
+        // Diccionario que contiene el tipo que recibe cada variable de las funciones creadas
         public static Dictionary<string, List<string>> input = new() {
             {"print(", new() {"all"}}, {"cos(", new() {"number"}}, {"sin(", new() {"number"}}, {"tan(", new() {"number"}}, 
             {"sqrt(", new() {"number"}}, {"log(", new() {"number", "number"}}, {"rand(", new(){""}}, 
-            {"exp(", new() {"number"}}, {"f(", new() {"number"}}
+            {"exp(", new() {"number"}}
         };
+        // Lista que contiene las palabras reservadas del lenguaje
         public static List<string> keyWords = new() {
             "True", "False", "true", "false", "function", "if", "elif", "else", "string", "number",
             "boolean", "let", "in", "PI", "E", "print"
         };
+        // Lista que contiene los nombres de todas las funciones que existen 
         public static List<string> existFunctions = new() {
-            "cos(", "sin(", "tan(", "sqrt(", "log(", "rand(", "exp(", "f("
+            "cos(", "sin(", "tan(", "sqrt(", "log(", "rand(", "exp("
         };
         public Function(string[] s) {
 
@@ -34,6 +47,7 @@ namespace Hulk
                 arg2 = s[0];
             }
 
+            // Aquí se precalculan los valores de las funciones predefinidas
             if (!Error.error) {
                 predFunctions["cos("]  = Math.Cos(double.Parse(arg1)).ToString();
                 predFunctions["sin("]  = Math.Sin(double.Parse(arg1)).ToString();
@@ -45,6 +59,7 @@ namespace Hulk
         } 
 
         public static bool IsFunction(string s) {
+            // Método para verificar si una expresión es una función
             if (string.IsNullOrWhiteSpace(s)) return false;
             s = Aux.FunctionsOut(s);
             s = s.Trim();
@@ -52,38 +67,52 @@ namespace Hulk
             return s == "";
         }
 
-        public static bool IsInstruction(string s) {
+        public static bool Declaration(string s) {
+            // Método para saber si una expresión es una declaración de una función
             s = s.Trim();
             while (s.StartsWith("(") || s.StartsWith(" ")) s = s.Remove(0, 1); 
             return s.StartsWith("function ");
         }
 
         public static string Create(string s) {
-            string n = s;
+            // Método para crear la función
             int count = 0;
 
+            // Se verifica si la instrucción empieza con '(', en ese caso se eliminan todos y se 
+            // cuentan cuantos tenía para eliminarlos al final
             while (s.StartsWith("(")) {
                 s = s.Remove(0, 1); 
+                s = s.TrimStart();
                 count ++;
             }
-            
-            s = s.Remove(s.Length - count);
-            s = Aux.SpacesOut(s)[8..];
 
+            s = Aux.SpacesOut(s)[8..];
+            // Aquí se quitan los ')'
+            s = s.Remove(s.Length - count);
+
+            // Si después de quitar los caracteres donde debían estar los paréntesis del final el
+            // 'cuerpo' de la función queda 'desbalanceado' es porque desde un inicio se declaró mal
             if (Aux.ParenthesisBalance(s) != 0) {
-                if (!Error.Syntax($"'{n}' is not a valid 'function' instruction")) return "";
+                if (!Error.Syntax($"Invalid 'function' instruction")) return "";
             }
 
+            // Se revisa que la declaración no tenga errores
             if (!Error.FunctionGeneral(s)) return "";
   
+            // Llegado a este punto representa una función válida y entonces será creada
+
+            // Se guarda el nombre de la función de la forma "name("
             string funcName = Aux.SpacesOut(s[..(s.IndexOf("(") + 1)]);
+            // Se delimitan las variables y son separadas por ','
             string argument = s.Substring(s.IndexOf("(") + 1, s.IndexOf(")") - s.IndexOf("(") - 1);
-            string body = Aux.SpacesOut(s[(s.IndexOf("=>") + 2)..]);
             List<string> vars = argument.Split(",").ToList();
+            // Finalmente, se guarda el 'cuerpo' de la función
+            string body = Aux.SpacesOut(s[(s.IndexOf("=>") + 2)..]);
 
             for (int i = 0; i < vars.Count; i++) vars[i] = vars[i].Trim();
-            
-            functions[funcName] = body;
+
+            // Aquí se guardan todos los registros necesarios 
+            bodyFunction[funcName] = body;
             variables[funcName] = vars;
             existFunctions.Add(funcName);
             if (output[funcName] == "all") output[funcName] = Aux.FunctionOutputType(body, vars);
@@ -92,68 +121,81 @@ namespace Hulk
         }
 
         public static string Eval(string s, string[] args) {
-            string n = Aux.StringOut(s);
+            // Se guarda la expresión sin strings para la búsqueda de índices
+            string s_WithOutStrings = Aux.StringOut(s);
 
-            int index1 = n.IndexOf('(');
+            int index1 = s_WithOutStrings.IndexOf('(');
             string argument = string.Join(", ", args);
             string f = s[..(index1 + 1)];
 
-            if (functions.ContainsKey(f)) {
-                if(cache.ContainsKey($"{f}{argument})")) return cache[$"{f}{argument})"];
-                return Sustitution(functions[f], variables[f], args.ToList(), true, f);
-            }
-            
+            // Se verifica si no tiene errores con respecto a los argumentos, que se haya recibido
+            // el tipo que se esperaba y más especificaciones con respecto a las predefinidas
             if(!Error.Restrictions(f, argument, args)) return "";
 
-            if (f[..^1] == "rand") {
-                Random r = new();
-                return r.NextDouble().ToString();         
+            // Se verifica que la función sea creada
+            if (bodyFunction.ContainsKey(f)) {
+                // En ese caso se verifica si el valor está contenido en 'cache' para en 
+                // caso positivo se obtenga el valor de la evaluación de forma inmediata 
+                if(cache.ContainsKey($"{f}{argument})")) 
+                return cache[$"{f}{argument})"];
+
+                // Si no fue así, entonces se calculará su valor 
+                return Sustitution(bodyFunction[f], variables[f], args.ToList());
             }
             
-            Function result = new(args);
+            // Si la función es 'rand' se crea el objeto 'random' de tipo Random y se usa el
+            // método 'NextDouble()' que devuelve un número random entre 0 y 1
+            if (f[..^1] == "rand") {
+                Random random = new();
+                return random.NextDouble().ToString();         
+            }
 
-            if (Error.error) return "";
-            if (result.predFunctions.ContainsKey(f)) return result.predFunctions[f];
-            
-            Error.Semantic($"'{f[..^1]}' is not defined");
-            return "";
+            // Si llegó a este punto entonces se crea el objeto 'pred' para calcular los valores
+            // en las funciones predefinidas
+            Function pred = new(args);
+            // y luego devolverlo
+            return pred.predFunctions[f];            
         }
         
-        public static string Sustitution(string body, List<string> vars, List<string> values, bool function, string name = "") {
-
-            if(!Error.ArgumentCount(vars, values, name)) return "";
-            if(function && !Error.Restrictions(name, string.Join(", ", values), values.ToArray())) return "";
-        
-            string s = Aux.StringOut(body);
+        public static string Sustitution(string body, List<string> vars, List<string> values) {
+            // Se guarda la expresión sin strings para la búsqueda de índices
+            string body_WithOutStrings = Aux.StringOut(body);
             string[] symbols = {
                 "*", "/", "^", "%", "+", "-", "(", ")", ">", "<", "&","|","!", ",", "@", "=", "\"", " "
             };
             
             for (int i = 0; i < vars.Count; i++)
             {
-                if (s.Contains(vars[i])) {
-                    List<string> tokens = s.Split(symbols, StringSplitOptions.RemoveEmptyEntries).ToList();
+                // Si el 'cuerpo' contiene a la variable 
+                if (body_WithOutStrings.Contains(vars[i])) {
+                    List<string> tokens = body_WithOutStrings.Split(symbols, StringSplitOptions.RemoveEmptyEntries).ToList();
                     tokens.RemoveAll(string.IsNullOrWhiteSpace);
+                    // se guarda cada elemento del 'cuerpo', a excepción de los símbolos
                     string[] newTokens = new string[tokens.Count];
 
                     for (int j = 0; j < tokens.Count; j++)
                     {
+                        // si lo que se guardó en el array es la variable entonces se guarda su valor
                         newTokens[j] = (Aux.SpacesOut(tokens[j]) == vars[i])? $"({values[i]})" : tokens[j];
                     }
                     
-                    int position = s.Length;
+                    int position = body_WithOutStrings.Length;
 
                     for (int j = tokens.Count - 1; j >= 0; j--)
                     {
-                        position = s[..position].LastIndexOf(tokens[j]);
+                        // aquí se busca la posición, de atrás para delante, de los elementos del 
+                        // array para q sean sustituidos por sí mismos o por su valor, en caso de 
+                        // las variables
+                        position = body_WithOutStrings[..position].LastIndexOf(tokens[j]);
                         body = body.Remove(position,tokens[j].Length);
                         body = body.Insert(position, newTokens[j]);
                     } 
                     
-                    s = Aux.StringOut(body);
+                    body_WithOutStrings = Aux.StringOut(body);
                 }
             }
 
+            // Finalmente se devuelve el 'cuerpo' modificado
             return body;
         }
     }
