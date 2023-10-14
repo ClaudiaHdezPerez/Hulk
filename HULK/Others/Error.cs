@@ -1579,9 +1579,9 @@ namespace Hulk
             // datos que necesito
             if (n[..start].LastIndexOf(" let ") == -1) {
                 // Se revisa que la cantidad de variables se corresponda con la de valores dados
-                if(!ArgumentCount(vars, values)) {
-                    return defaultValue;
-                }
+                // if(!ArgumentCount(vars, values)) {
+                //     return defaultValue;
+                // }
 
                 // Se verifican que los valores sean correctos
                 if (!ValuesLet_in(allVars, allValues, function)) {

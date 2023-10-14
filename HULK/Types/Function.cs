@@ -15,19 +15,19 @@ namespace Hulk
         // Diccionario con las funciones predefinidas por el lenguaje
         public Dictionary<string, string> predFunctions = new();
         // Diccionario con las funciones que se van creando como llave y como valor su 'cuerpo'
-        public static Dictionary<string, string> bodyFunction = new(); 
+        public static Dictionary<string, string> bodyFunction = new() {{"fib(", "if (n > 1) fib(n-1) + fib(n-2) else 1"}}; 
         // Diccionario con las funciones que se van creando como llave y como valor sus variables
-        public static Dictionary<string, List<string>> variables = new();
+        public static Dictionary<string, List<string>> variables = new() {{"fib(", new() {"n"}}};
         // Diccionario que contiene el tipo que devuelve cada función creada
         public static Dictionary<string, string> output = new() {
             {"print(", "all"}, {"cos(", "number"}, {"sin(", "number"}, {"tg(", "number"}, {"sqrt(", "number"}, 
-            {"log(", "number"}, {"rand(", "number"}, {"exp(", "number"}
+            {"log(", "number"}, {"rand(", "number"}, {"exp(", "number"}, {"fib(", "number"}
         };
         // Diccionario que contiene el tipo que recibe cada variable de las funciones creadas
         public static Dictionary<string, List<string>> input = new() {
             {"print(", new() {"all"}}, {"cos(", new() {"number"}}, {"sin(", new() {"number"}}, {"tg(", new() {"number"}}, 
             {"sqrt(", new() {"number"}}, {"log(", new() {"number", "number"}}, {"rand(", new(){""}}, 
-            {"exp(", new() {"number"}}
+            {"exp(", new() {"number"}}, {"fib(", new() {"number"}}
         };
         // Lista que contiene las palabras reservadas del lenguaje
         public static List<string> keyWords = new() {
@@ -36,7 +36,7 @@ namespace Hulk
         };
         // Lista que contiene los nombres de todas las funciones que existen 
         public static List<string> existFunctions = new() {
-            "cos(", "sin(", "tg(", "sqrt(", "log(", "rand(", "exp("
+            "cos(", "sin(", "tg(", "sqrt(", "log(", "rand(", "exp(", "fib("
         };
         public Function(string[] s) {
 
@@ -128,10 +128,6 @@ namespace Hulk
             string argument = string.Join(", ", args);
             string f = s[..(index1 + 1)];
 
-            // Se verifica si no tiene errores con respecto a los argumentos, que se haya recibido
-            // el tipo que se esperaba y más especificaciones con respecto a las predefinidas
-            if(!Error.Restrictions(f, argument, args)) return "";
-
             // Se verifica que la función sea creada
             if (bodyFunction.ContainsKey(f)) {
                 // En ese caso se verifica si el valor está contenido en 'cache' para en 
@@ -140,8 +136,12 @@ namespace Hulk
                 return cache[$"{f}{argument})"];
 
                 // Si no fue así, entonces se calculará su valor 
-                return Sustitution(bodyFunction[f], variables[f], args.ToList());
+                return Sustitution(bodyFunction[f], variables[f], args.ToList(), f);
             }
+
+            // Se verifica si no tiene errores con respecto a los argumentos, que se haya recibido
+            // el tipo que se esperaba y más especificaciones con respecto a las predefinidas
+            if(!Error.Restrictions(f, argument, args)) return "";
 
             if (f == "log(") {
                 // El argumento tiene que ser mayor que 0
@@ -186,7 +186,11 @@ namespace Hulk
             return pred.predFunctions[f];            
         }
         
-        public static string Sustitution(string body, List<string> vars, List<string> values) {
+        public static string Sustitution(string body, List<string> vars, List<string> values, string funcName = "") {
+            
+            if (funcName != "" && !Error.ArgumentCount(vars, values, funcName)) return "";
+            if (funcName != "" && !Error.Restrictions(funcName, string.Join(", ", values), values.ToArray())) return "";
+
             // Se guarda la expresión sin strings para la búsqueda de índices
             string body_WithOutStrings = Aux.StringOut(body);
             string[] symbols = {
