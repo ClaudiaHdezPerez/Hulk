@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Hulk\\Hulk.csproj": {}
+    "C:\\Users\\Claudia\\Documents\\GitHub\\Hulk\\HULK\\Hulk.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Hulk\\Hulk.csproj": {
+    "C:\\Users\\Claudia\\Documents\\GitHub\\Hulk\\HULK\\Hulk.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Hulk\\Hulk.csproj",
+        "projectUniqueName": "C:\\Users\\Claudia\\Documents\\GitHub\\Hulk\\HULK\\Hulk.csproj",
         "projectName": "Hulk",
-        "projectPath": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Hulk\\Hulk.csproj",
+        "projectPath": "C:\\Users\\Claudia\\Documents\\GitHub\\Hulk\\HULK\\Hulk.csproj",
         "packagesPath": "C:\\Users\\Claudia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Hulk\\obj\\",
+        "outputPath": "C:\\Users\\Claudia\\Documents\\GitHub\\Hulk\\HULK\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Claudia\\AppData\\Roaming\\NuGet\\NuGet.Config",
