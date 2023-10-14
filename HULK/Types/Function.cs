@@ -20,12 +20,12 @@ namespace Hulk
         public static Dictionary<string, List<string>> variables = new();
         // Diccionario que contiene el tipo que devuelve cada función creada
         public static Dictionary<string, string> output = new() {
-            {"print(", "all"}, {"cos(", "number"}, {"sin(", "number"}, {"tan(", "number"}, {"sqrt(", "number"}, 
+            {"print(", "all"}, {"cos(", "number"}, {"sin(", "number"}, {"tg(", "number"}, {"sqrt(", "number"}, 
             {"log(", "number"}, {"rand(", "number"}, {"exp(", "number"}
         };
         // Diccionario que contiene el tipo que recibe cada variable de las funciones creadas
         public static Dictionary<string, List<string>> input = new() {
-            {"print(", new() {"all"}}, {"cos(", new() {"number"}}, {"sin(", new() {"number"}}, {"tan(", new() {"number"}}, 
+            {"print(", new() {"all"}}, {"cos(", new() {"number"}}, {"sin(", new() {"number"}}, {"tg(", new() {"number"}}, 
             {"sqrt(", new() {"number"}}, {"log(", new() {"number", "number"}}, {"rand(", new(){""}}, 
             {"exp(", new() {"number"}}
         };
@@ -36,7 +36,7 @@ namespace Hulk
         };
         // Lista que contiene los nombres de todas las funciones que existen 
         public static List<string> existFunctions = new() {
-            "cos(", "sin(", "tan(", "sqrt(", "log(", "rand(", "exp("
+            "cos(", "sin(", "tg(", "sqrt(", "log(", "rand(", "exp("
         };
         public Function(string[] s) {
 
@@ -51,7 +51,7 @@ namespace Hulk
             if (!Error.error) {
                 predFunctions["cos("]  = Math.Cos(double.Parse(arg1)).ToString();
                 predFunctions["sin("]  = Math.Sin(double.Parse(arg1)).ToString();
-                predFunctions["tan("]  = Math.Tan(double.Parse(arg1)).ToString();
+                predFunctions["tg("]  = Math.Tan(double.Parse(arg1)).ToString();
                 predFunctions["sqrt("] = Math.Sqrt(double.Parse(arg1)).ToString();
                 predFunctions["log("]  = Math.Log(double.Parse(arg1), double.Parse(arg2)).ToString();
                 predFunctions["exp("]  = Math.Pow(Math.E, double.Parse(arg1)).ToString();
@@ -141,6 +141,35 @@ namespace Hulk
 
                 // Si no fue así, entonces se calculará su valor 
                 return Sustitution(bodyFunction[f], variables[f], args.ToList());
+            }
+
+            if (f == "log(") {
+                // El argumento tiene que ser mayor que 0
+                if (args.Length == 1 && double.Parse(args[0]) <= 0) {
+                    Error.Semantic($"Argument must be greater than '0' in 'log' function");
+                    return "";
+                }
+
+                if (args.Length > 1) {
+                    if (double.Parse(args[1]) <= 0) {
+                        Error.Semantic($"Argument must be greater than '0' in 'log' function");
+                        return "";
+                    }
+                    
+                    // y la base mayor que cero y distinta de 1
+                    if (double.Parse(args[0]) <= 0 || double.Parse(args[0]) == 1) {
+                        Error.Semantic($"Base must be greater than '0' and diferent of '1' in 'log' function");
+                        return "";
+                    }
+                }
+            }
+
+            if (f == "sqrt(") {
+                // El argumento de la función no puede ser negativo
+                if (double.IsNegative(double.Parse(argument))) {
+                    Error.Semantic($"Argument must be greater than or equal to '0' in 'sqrt' function");
+                    return "";
+                }
             }
             
             // Si la función es 'rand' se crea el objeto 'random' de tipo Random y se usa el

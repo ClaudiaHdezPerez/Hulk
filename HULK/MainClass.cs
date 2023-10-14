@@ -13,7 +13,7 @@
                 Console.ForegroundColor = ConsoleColor.Gray;
         
                 string expression = Console.ReadLine()!;
-                // string expression = "function f(x) => if(x > 1) f(x-1) else true;";
+                // string expression = "sqrt(-2-2-2-2-2);";
 
                 if (expression.ToUpper() == "EXIT") break; // Otra opción para cerrar la aplicación de consola
 

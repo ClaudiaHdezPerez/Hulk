@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1697243522 "c:/Users/Claudia/Documents/MATCOM/Programación/Mio/Hulk/Informe/Informe.tex" "Informe.pdf" "Informe" 1697243523 0
+["pdflatex"] 1697255067 "c:/Users/Claudia/Documents/MATCOM/Programación/Mio/Hulk/Informe/Informe.tex" "Informe.pdf" "Informe" 1697255067 0
   "C:/Users/Claudia/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1689650142 81088 29d6fa367ac022d1b69251d68c0742e6 ""
   "C:/Users/Claudia/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0900.pk" 1697240761 10472 882cb132253facba79e6ae0176f36419 ""
   "C:/Users/Claudia/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1689397898 23179904 20c91ffe413cab913e49f659928c9b4f ""
@@ -24,6 +24,7 @@
   "C:/Users/Claudia/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti12.tfm" 1136765053 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "C:/Users/Claudia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Users/Claudia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb" 1247596667 32007 e8fa0078355f39467039935974716569 ""
+  "C:/Users/Claudia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1247596666 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "C:/Users/Claudia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb" 1247596667 36094 798f80770b3b148ceedd006d487db67c ""
   "C:/Users/Claudia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/Claudia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1247596666 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
@@ -48,9 +49,9 @@
   "C:/Users/Claudia/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1680182075 29768 5600b3a98028e2e01b60e7f98fbf4b9c ""
   "Imagenes/Types.png" 1697239762 101917 2a5ae496a88f561c4d0efbb4c20e0145 ""
   "Imagenes/logoMATCOM.png" 1646284122 5043 c51cfde8fa4a5df168cc02461d200e1c ""
-  "Informe.aux" 1697243522 32 044b7f8fc9779af7531264e0c5c84b6d "pdflatex"
-  "Informe.tex" 1697243521 2494 da255686cc2deadb522624bc3aad45df ""
-  "c:/Users/Claudia/Documents/MATCOM/Programación/Mio/Hulk/Informe/Informe.tex" 1697243521 2494 da255686cc2deadb522624bc3aad45df ""
+  "Informe.aux" 1697255067 32 ab05033ccbb38b00a31b200ccedf8001 "pdflatex"
+  "Informe.tex" 1697255066 6642 290e7df217b1dbd944a6d8a6ecfec2be ""
+  "c:/Users/Claudia/Documents/MATCOM/Programación/Mio/Hulk/Informe/Informe.tex" 1697255066 6642 290e7df217b1dbd944a6d8a6ecfec2be ""
   (generated)
   "Informe.aux"
   "Informe.log"

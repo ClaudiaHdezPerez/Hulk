@@ -595,7 +595,8 @@ namespace Hulk
                             // debe tener según lo que espera la función donde es utilizada y se sustituye
                             // por el valor por defecto del tipo
                             if (vars.Contains(args[i].Trim()) && Function.input[function][i] != "all") {
-                                Function.input[funcName + "("][i] = Function.input[function][i];
+                                int position = vars.IndexOf(args[i].Trim());
+                                Function.input[funcName + "("][position] = Function.input[function][i];
                                 args[i] = defaultValues[Function.input[function][i]];
                             }
                             // Si la función recibe cualquier tipo se pone un valor válido
@@ -1317,29 +1318,6 @@ namespace Hulk
                 // distinto de vacío, por tanto si uno es vacío es porque se esperaban dos 
                 if (args.Any(string.IsNullOrWhiteSpace)) {
                     return Semantic($"2 arguments were expected but 1 was given in 'log' function");
-                }
-                
-                // El argumento tiene que ser mayor que 0
-                if (args.Length == 1 && double.Parse(args[0]) <= 0) {
-                    return Semantic($"Argument must be greater than '0' in 'log' function");
-                }
-
-                if (args.Length > 1) {
-                    if (double.Parse(args[1]) <= 0) {
-                        return Semantic($"Argument must be greater than '0' in 'log' function");
-                    }
-                    
-                    // y la base mayor que cero y distinta de 1
-                    if (double.Parse(args[0]) <= 0 || double.Parse(args[0]) == 1) {
-                        return Semantic($"Base must be greater than '0' and diferent of '1' in 'log' function");
-                    }
-                }
-            }
-
-            if (f == "sqrt(") {
-                // El argumento de la función no puede ser negativo
-                if (double.IsNegative(double.Parse(argument))) {
-                    return Semantic($"Argument must be greater than or equal to '0' in 'sqrt' function");
                 }
             }
 
