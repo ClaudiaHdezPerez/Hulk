@@ -33,7 +33,7 @@ namespace Hulk
                 }
 
                 // Se busca la igualdad o la diferencia, el último de estos índices
-                if (n.Contains("==") | n.Contains("!=")) {
+                if (n.Contains("==") || n.Contains("!=")) {
                     int symbol = Math.Max(n.LastIndexOf("=="), n.LastIndexOf("!="));
 
                     if (n[symbol..(symbol + 2)] == "==") {
@@ -47,7 +47,7 @@ namespace Hulk
                 }
 
                 // Se busca el mayor o igual, menor o igual, el menos o el mayor, el último de estos índices
-                if (n.Contains("<=") | n.Contains(">=") | n.Contains(">") | n.Contains("<")) {
+                if (n.Contains("<=") || n.Contains(">=") || n.Contains(">") || n.Contains("<")) {
                     int symbol = Math.Max(Math.Max(n.LastIndexOf("<="), n.LastIndexOf(">=")), 
                                           Math.Max(n.LastIndexOf(">"), n.LastIndexOf("<")));
 

@@ -53,7 +53,7 @@ namespace Hulk
                 return true;
             }
 
-            if (!string.IsNullOrWhiteSpace(leftMember) & !string.IsNullOrWhiteSpace(rightMember)) return true;
+            if (!string.IsNullOrWhiteSpace(leftMember) && !string.IsNullOrWhiteSpace(rightMember)) return true;
 
             string member = string.IsNullOrWhiteSpace(leftMember)? "left" : "right"; 
             return Semantic($"Operator '{symbol}' needs a '{member}' member");
@@ -209,7 +209,7 @@ namespace Hulk
                 if (!MissingMember(symbol, leftSide, rightSide)) 
                 return false;
                 
-                if(passBodySyntax_R | rightType != "boolean") {
+                if(passBodySyntax_R || rightType != "boolean") {
                     return Semantic($"Operator '!' cannot used by {rightType}");
                 }
             }
@@ -222,7 +222,7 @@ namespace Hulk
             // sino se revusa q tenga los dos miembros
             return false;
 
-            if (passBodySyntax_L & passBodySyntax_R) { 
+            if (passBodySyntax_L && passBodySyntax_R) { 
                 // Si no tuvo errores se sigue la revisión 
                 if (symbol == "@") {
                     // En el '@' al menos uno de los dos tiene que ser string
@@ -233,7 +233,7 @@ namespace Hulk
 
                 else if (numerics.Contains(symbol)) {
                     // De estos símbolos ambos miembros tienen que ser números
-                    if (leftType != "number" | rightType != "number") {
+                    if (leftType != "number" || rightType != "number") {
                         return Semantic($"Operator {symbol} cannot be used between {leftType} and {rightType}");
                     }
 
@@ -244,12 +244,12 @@ namespace Hulk
                     }
                 }
 
-                else if ((symbol == "&" | symbol == "|") & (leftType != "boolean" | rightType != "boolean")) {
+                else if ((symbol == "&" || symbol == "|") && (leftType != "boolean" || rightType != "boolean")) {
                     // Estos símbolos ambos miembros tienen que ser booleanos
                     return Semantic($"Operator {symbol} cannot be used between {leftType} and {rightType}");
                 }
 
-                else if ((symbol == "!=" | symbol == "==") & leftType != rightType) {
+                else if ((symbol == "!=" || symbol == "==") && leftType != rightType) {
                     // Estos símbolos ambos miembros tienen que ser del mismo tipo
                     return Semantic($"Operator {symbol} cannot be used between {leftType} and {rightType}");
                 }
@@ -732,7 +732,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(left)];
-                        return Semantic($"Varibale '{left}' can not be boolean and {type}");
+                        return Semantic($"Variable '{left}' can not be boolean and {type}");
                     }      
                 }
 
@@ -763,7 +763,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(right)];
-                        return Semantic($" Varibale '{right}' can not be boolean and {type}");
+                        return Semantic($" Variable '{right}' can not be boolean and {type}");
                     }
                 }
 
@@ -803,7 +803,7 @@ namespace Hulk
 
                     else if (Function.input[funcName + "("][vars.IndexOf(left)] != typeR) {
                         string type = Function.input[funcName + "("][vars.IndexOf(left)];
-                        return Semantic($"Varibale '{left}' can not be {typeR} and {type}");
+                        return Semantic($"Variable '{left}' can not be {typeR} and {type}");
                     }
 
                     left = defaultValues[typeR];   
@@ -832,7 +832,7 @@ namespace Hulk
 
                     else if (Function.input[funcName + "("][vars.IndexOf(right)] != typeL) {
                         string type = Function.input[funcName + "("][vars.IndexOf(right)];
-                        return Semantic($"Varibale '{right}' can not be {typeL} and {type}");
+                        return Semantic($"Variable '{right}' can not be {typeL} and {type}");
                     }
 
                     right = defaultValues[typeL];   
@@ -879,7 +879,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(left)];
-                        return Semantic($"Varibale '{left}' can not be number and {type}");
+                        return Semantic($"Variable '{left}' can not be number and {type}");
                     }      
                 }
 
@@ -910,7 +910,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(right)];
-                        return Semantic($"Varibale '{right}' can not be number and {type}");
+                        return Semantic($"Variable '{right}' can not be number and {type}");
                     }
                 }
 
@@ -952,7 +952,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(left)];
-                        return Semantic($"Varibale '{left}' can not be number and {type}");
+                        return Semantic($"Variable '{left}' can not be number and {type}");
                     }      
                 }
 
@@ -983,7 +983,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(right)];
-                        return Semantic($"Varibale '{right}' can not be number and {type}");
+                        return Semantic($"Variable '{right}' can not be number and {type}");
                     }
                 }
 
@@ -1024,7 +1024,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(right)];
-                        return Semantic($"Varibale '{right}' can not be boolean and {type}");
+                        return Semantic($"Variable '{right}' can not be boolean and {type}");
                     }
                 }
 
@@ -1112,7 +1112,7 @@ namespace Hulk
 
                         else {
                             string type = Function.input[funcName + "("][vars.IndexOf(right)];
-                            return Semantic($"Varibale '{right}' can not be number and {type}");
+                            return Semantic($"Variable '{right}' can not be number and {type}");
                         }
                     }
 
@@ -1155,7 +1155,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(left)];
-                        return Semantic($"Varibale '{left}' can not be number and {type}");
+                        return Semantic($"Variable '{left}' can not be number and {type}");
                     }      
                 }
 
@@ -1186,7 +1186,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(right)];
-                        return Semantic($"Varibale '{right}' can not be number and {type}");
+                        return Semantic($"Variable '{right}' can not be number and {type}");
                     }
                 }
 
@@ -1227,7 +1227,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(left)];
-                        return Semantic($"Varibale '{left}' can not be number and {type}");
+                        return Semantic($"Variable '{left}' can not be number and {type}");
                     }      
                 }
 
@@ -1258,7 +1258,7 @@ namespace Hulk
 
                     else {
                         string type = Function.input[funcName + "("][vars.IndexOf(right)];
-                        return Semantic($"Varibale '{right}' can not be number and {type}");
+                        return Semantic($"Variable '{right}' can not be number and {type}");
                     }
                 }
 
