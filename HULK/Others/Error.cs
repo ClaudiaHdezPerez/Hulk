@@ -238,7 +238,8 @@ namespace Hulk
                     }
 
                     // En el caso de la división y el resto no es posible si el miembro derecho es 0
-                    if ((symbol == "/" || symbol == "%") && double.Parse(rightSide) == 0) {
+                    // solo lo dará si el lado derecho es exactamente 0
+                    if ((symbol == "/" || symbol == "%") && rightSide.Trim() == "0") {
                         return Semantic("Division by 0 is not defined");
                     }
                 }

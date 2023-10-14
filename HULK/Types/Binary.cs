@@ -109,12 +109,24 @@ namespace Hulk
             // Método para calcular una división
             if (rightSide == "" || leftSide == "") return "";
 
+            // En el caso de la división no es posible si el miembro derecho es 0
+            if (double.Parse(rightSide) == 0) {
+                Error.Semantic("Division by 0 is not defined");
+                return "";
+            }
+
             return (double.Parse(leftSide) / double.Parse(rightSide)).ToString();
         }
 
         public static string Mod(string leftSide, string rightSide) {
             // Método para calcular el resto de una división
             if(rightSide == "" || leftSide == "") return "";
+
+            // En el resto no es posible si el miembro derecho es 0
+            if (double.Parse(rightSide) == 0) {
+                Error.Semantic("Division by 0 is not defined");
+                return "";
+            }
 
             return (double.Parse(leftSide) % double.Parse(rightSide)).ToString();
         }
