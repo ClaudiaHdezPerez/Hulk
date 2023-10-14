@@ -15,19 +15,19 @@ namespace Hulk
         // Diccionario con las funciones predefinidas por el lenguaje
         public Dictionary<string, string> predFunctions = new();
         // Diccionario con las funciones que se van creando como llave y como valor su 'cuerpo'
-        public static Dictionary<string, string> bodyFunction = new() {{"fib(", "if (n > 1) fib(n-1) + fib(n-2) else 1"}}; 
+        public static Dictionary<string, string> bodyFunction = new(); 
         // Diccionario con las funciones que se van creando como llave y como valor sus variables
-        public static Dictionary<string, List<string>> variables = new() {{"fib(", new() {"n"}}};
+        public static Dictionary<string, List<string>> variables = new();
         // Diccionario que contiene el tipo que devuelve cada función creada
         public static Dictionary<string, string> output = new() {
             {"print(", "all"}, {"cos(", "number"}, {"sin(", "number"}, {"tg(", "number"}, {"sqrt(", "number"}, 
-            {"log(", "number"}, {"rand(", "number"}, {"exp(", "number"}, {"fib(", "number"}
+            {"log(", "number"}, {"rand(", "number"}, {"exp(", "number"}
         };
         // Diccionario que contiene el tipo que recibe cada variable de las funciones creadas
         public static Dictionary<string, List<string>> input = new() {
             {"print(", new() {"all"}}, {"cos(", new() {"number"}}, {"sin(", new() {"number"}}, {"tg(", new() {"number"}}, 
             {"sqrt(", new() {"number"}}, {"log(", new() {"number", "number"}}, {"rand(", new(){""}}, 
-            {"exp(", new() {"number"}}, {"fib(", new() {"number"}}
+            {"exp(", new() {"number"}}
         };
         // Lista que contiene las palabras reservadas del lenguaje
         public static List<string> keyWords = new() {
@@ -36,7 +36,7 @@ namespace Hulk
         };
         // Lista que contiene los nombres de todas las funciones que existen 
         public static List<string> existFunctions = new() {
-            "cos(", "sin(", "tg(", "sqrt(", "log(", "rand(", "exp(", "fib("
+            "cos(", "sin(", "tg(", "sqrt(", "log(", "rand(", "exp("
         };
         public Function(string[] s) {
 

@@ -13,7 +13,6 @@
                 Console.ForegroundColor = ConsoleColor.Gray;
         
                 string expression = Console.ReadLine()!;
-                // string expression = "let a = \"hello world\" in print(a + 5);";
 
                 if (expression.ToUpper() == "EXIT") break; // Otra opción para cerrar la aplicación de consola
 
