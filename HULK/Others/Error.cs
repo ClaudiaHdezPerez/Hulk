@@ -383,12 +383,12 @@ namespace Hulk
                 return Syntax("The body was not defined");
             }
 
-            if (Let_in.IsLet_in(body)) {
+            while (Let_in.IsLet_in(body[2..])) {
                 // Si tiene un let-in se maneja de otra forma, se efectúa el let-in antes
                 // pero sin llegar a evaluar el 'body' del let-in solo sustituyendolo en la expresión
                 funcVars = vars;
                 Function.keyWords.AddRange(vars);
-                body = Let_in.Eval(body, true);
+                body = $"=> {Let_in.Eval(body[2..], true)}";
                 Function.keyWords.RemoveRange(Function.keyWords.Count - vars.Count, vars.Count);
                 funcVars = new();
                 if (body == "") {

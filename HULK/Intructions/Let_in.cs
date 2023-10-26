@@ -17,7 +17,7 @@ namespace Hulk
 
         public static string Eval(string s, bool function = false) {  
             // Primero se revisa si la sintaxis de la expresión es válida
-            (bool, string, int, int, string, List<string>, List<string>) data = Error.Correct_Let(s);
+            (bool, string, int, int, string, List<string>, List<string>) data = Error.Correct_Let(s, function);
 
             // Si el 'item1' es true es porque pasó todas las revisiones y es correcto,
             // de forma contraria se devolverá ""
