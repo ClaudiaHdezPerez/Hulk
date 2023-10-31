@@ -43,8 +43,9 @@ namespace Hulk
             s = conditionalData.Item7;
 
             // Aquí se comprueba que lo que antecede a la condicional sea correcto
-            if (s[..(start + 1)].Trim() != "" && s[..(start + 1)].Length > 4 && s[..(start + 1)].Trim()[^4..] != "else" && !symbols.Contains(s[..(start + 1)][^1].ToString())) {
-                if (!Error.Syntax("Unexpected expression before 'if-else' instruction")) return "";
+            if (s[..(start + 1)].Trim() != "" && !symbols.Contains(s[..(start + 1)][^1].ToString())) {
+                if ((s[..(start + 1)].Length < 4 || (s[..(start + 1)].Trim()[^4..] != "else"))
+                && !Error.Syntax("Unexpected expression before 'if-else' instruction")) return "";
             }
 
             // Evaulando la condición, se reemplazará el 'body' esperado
