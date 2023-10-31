@@ -4,6 +4,8 @@ namespace Hulk
 {
     public class Error 
     {
+        private static List<string> allVars = new();
+        private static List<string> allValues = new();
         public static bool error = false;
         public static List<string> funcVars = new();
         public static List<string> vars = new();
@@ -1395,9 +1397,6 @@ namespace Hulk
             // Se insertan espacios en blanco al principio y al final para la búsqueda de índices 
             s = s.Insert(0, " ");
             s = s.Insert(s.Length, " ");
-
-            List<string> allVars = new();
-            List<string> allValues = new();
             
             string m = Aux.StringOut(s);
             string n = Regex.Replace(m, @"[^_""ñÑA-Za-z0-9]", " ");
@@ -1772,6 +1771,8 @@ namespace Hulk
             funcVars = new();
             vars = new();
             funcName = "";
+            allVars = new();
+            allValues = new();
         }
 
         #endregion
