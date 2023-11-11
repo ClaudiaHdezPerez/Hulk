@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v7.0": {
       "Hulk/1.0.0": {
+        "dependencies": {
+          "HULK_Library": "1.0.0"
+        },
         "runtime": {
           "Hulk.dll": {}
+        }
+      },
+      "HULK_Library/1.0.0": {
+        "runtime": {
+          "HULK_Library.dll": {}
         }
       }
     }
   },
   "libraries": {
     "Hulk/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HULK_Library/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

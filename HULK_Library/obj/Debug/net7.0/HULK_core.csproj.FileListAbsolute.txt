@@ -1,0 +1,12 @@
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\bin\Debug\net7.0\HULK_core.deps.json
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\bin\Debug\net7.0\HULK_core.dll
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\bin\Debug\net7.0\HULK_core.pdb
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\obj\Debug\net7.0\HULK_core.csproj.AssemblyReference.cache
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\obj\Debug\net7.0\HULK_core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\obj\Debug\net7.0\HULK_core.AssemblyInfoInputs.cache
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\obj\Debug\net7.0\HULK_core.AssemblyInfo.cs
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\obj\Debug\net7.0\HULK_core.csproj.CoreCompileInputs.cache
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\obj\Debug\net7.0\HULK_core.dll
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\obj\Debug\net7.0\refint\HULK_core.dll
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\obj\Debug\net7.0\HULK_core.pdb
+C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_core\obj\Debug\net7.0\ref\HULK_core.dll

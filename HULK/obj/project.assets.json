@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "HULK_Library/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/HULK_Library.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HULK_Library.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "HULK_Library/1.0.0": {
+      "type": "project",
+      "path": "../HULK_Library/HULK_Library.csproj",
+      "msbuildProject": "../HULK_Library/HULK_Library.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "HULK_Library >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Claudia\\.nuget\\packages\\": {}
@@ -13,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\HULK\\Hulk.csproj",
+      "projectUniqueName": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Proyectos\\Hulk\\HULK_Library\\HULK\\HULK\\Hulk.csproj",
       "projectName": "Hulk",
-      "projectPath": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\HULK\\Hulk.csproj",
+      "projectPath": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Proyectos\\Hulk\\HULK_Library\\HULK\\HULK\\Hulk.csproj",
       "packagesPath": "C:\\Users\\Claudia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\HULK\\obj\\",
+      "outputPath": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Proyectos\\Hulk\\HULK_Library\\HULK\\HULK\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Claudia\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -33,7 +52,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Proyectos\\Hulk\\HULK_Library\\HULK\\HULK_Library\\HULK_Library.csproj": {
+              "projectPath": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Proyectos\\Hulk\\HULK_Library\\HULK\\HULK_Library\\HULK_Library.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

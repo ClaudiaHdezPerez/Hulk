@@ -1,4 +1,7 @@
-﻿namespace Hulk
+﻿using Hulk_Library;
+using String = Hulk_Library.String;
+
+namespace Hulk
 {
     public class MainClass
     {
@@ -18,21 +21,24 @@
 
                 else {
                     // Revisa la sintaxis básica que debe tener cada expresión para ser válida
-                    string resultado = Control.BasicSyntax(expression); 
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    (string, bool) resultado = Control.BasicSyntax(expression); 
+                    if(resultado.Item2)
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    else Console.ForegroundColor = ConsoleColor.DarkGray;
 
                     // Si la expresión final es un string entonces se 'traduce' para que C# 
                     // lo imprima correctamente
-                    if (String.IsString(resultado)) resultado = String.TraduceString(resultado);
+                    if (String.IsString(resultado.Item1)) resultado.Item1 = String.TraduceString(resultado.Item1);
 
-                    if (resultado != "") {
-                        if (resultado.StartsWith("\"")) {
+                    if (resultado.Item1 != "") {
+                        if (resultado.Item1.StartsWith("\"")) {
                             // Si no hubo ningún error y es un string entonces se le quitan las comillas del 
                             // inicio y del final de la expresión
-                            resultado = resultado[(resultado.IndexOf("\"") + 1)..resultado.LastIndexOf("\"")];
+                            resultado.Item1 = resultado.Item1[(resultado.Item1.IndexOf("\"") + 1)..resultado.Item1.LastIndexOf("\"")];
                         }
                         
-                        Console.WriteLine(resultado);
+                        Console.WriteLine(resultado.Item1);
                     }
                 }                    
             }
