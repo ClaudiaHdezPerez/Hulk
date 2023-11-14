@@ -10,3 +10,15 @@ C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\
 C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_Library\obj\Debug\net7.0\refint\HULK_Library.dll
 C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_Library\obj\Debug\net7.0\HULK_Library.pdb
 C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK_Library\obj\Debug\net7.0\ref\HULK_Library.dll
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\bin\Debug\net7.0\HULK_Library.deps.json
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\bin\Debug\net7.0\HULK_Library.dll
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\bin\Debug\net7.0\HULK_Library.pdb
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\obj\Debug\net7.0\HULK_Library.csproj.AssemblyReference.cache
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\obj\Debug\net7.0\HULK_Library.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\obj\Debug\net7.0\HULK_Library.AssemblyInfoInputs.cache
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\obj\Debug\net7.0\HULK_Library.AssemblyInfo.cs
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\obj\Debug\net7.0\HULK_Library.csproj.CoreCompileInputs.cache
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\obj\Debug\net7.0\HULK_Library.dll
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\obj\Debug\net7.0\refint\HULK_Library.dll
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\obj\Debug\net7.0\HULK_Library.pdb
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK_Library\obj\Debug\net7.0\ref\HULK_Library.dll

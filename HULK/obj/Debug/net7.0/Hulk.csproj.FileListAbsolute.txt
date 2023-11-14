@@ -91,3 +91,6 @@ C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\
 C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK\obj\Debug\net7.0\Hulk.pdb
 C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK\obj\Debug\net7.0\Hulk.genruntimeconfig.cache
 C:\Users\Claudia\Documents\MATCOM\Programación\Mio\Proyectos\Hulk\HULK_Library\HULK\HULK\obj\Debug\net7.0\ref\Hulk.dll
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK\bin\Debug\net7.0\HULK_Library.dll
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK\bin\Debug\net7.0\HULK_Library.pdb
+C:\Users\Claudia\Documents\GitHub\Hulk\HULK\obj\Debug\net7.0\Hulk.csproj.CopyComplete

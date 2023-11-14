@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Proyectos\\Hulk\\HULK_Library\\HULK\\HULK_Library\\HULK_Library.csproj",
+      "projectUniqueName": "C:\\Users\\Claudia\\Documents\\GitHub\\Hulk\\HULK_Library\\HULK_Library.csproj",
       "projectName": "HULK_Library",
-      "projectPath": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Proyectos\\Hulk\\HULK_Library\\HULK\\HULK_Library\\HULK_Library.csproj",
+      "projectPath": "C:\\Users\\Claudia\\Documents\\GitHub\\Hulk\\HULK_Library\\HULK_Library.csproj",
       "packagesPath": "C:\\Users\\Claudia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Claudia\\Documents\\MATCOM\\Programación\\Mio\\Proyectos\\Hulk\\HULK_Library\\HULK\\HULK_Library\\obj\\",
+      "outputPath": "C:\\Users\\Claudia\\Documents\\GitHub\\Hulk\\HULK_Library\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Claudia\\AppData\\Roaming\\NuGet\\NuGet.Config",

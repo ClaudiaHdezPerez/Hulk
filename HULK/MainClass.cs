@@ -15,7 +15,8 @@ namespace Hulk
                 Console.Write(">> ");
                 Console.ForegroundColor = ConsoleColor.Gray;
         
-                string expression = Console.ReadLine()!;
+                // string expression = Console.ReadLine()!;
+                string expression = "ftyc";
 
                 if (expression.ToUpper() == "EXIT") break; // Otra opción para cerrar la aplicación de consola
 
